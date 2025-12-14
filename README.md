@@ -25,3 +25,15 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## Evaluacion
+	1- Como se crea un proyecto en angular
+	2- Como se crea un componente
+	3- Que es un componente standalone
+	4- Como se crea un servicio
+	5- Comunicacion de un componente padre a un componente hijo(Mensaje = Hijo.Mensaje = Mensaje = Padre.Mensaje)
+	6- Consumo de servicios (Morty, Pokemon)
+		6.1 console.table(data).
+		6.2 table = td = data
+	7- Que es un lazy loading
+	8- Rutas(Como se declaran las rutas en angular, ejemplo)
