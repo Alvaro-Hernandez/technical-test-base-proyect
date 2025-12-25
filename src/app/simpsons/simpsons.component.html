@@ -1,0 +1,70 @@
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>The Simpsons</h1>
+      <p>Demostración de Lazy Loading + consumo de API</p>
+    </div>
+
+    <div class="pager">
+      <button (click)="prev()" [disabled]="!canPrev()">◀</button>
+      <span>Página {{ page() }} / {{ pagesTotal() }}</span>
+      <button (click)="next()" [disabled]="!canNext()">▶</button>
+    </div>
+  </header>
+
+  <section class="grid">
+    <div class="panel">
+      <h2>Personajes</h2>
+
+      <div class="state" *ngIf="loadingList()">Cargando lista...</div>
+
+      <ul class="list">
+        <li *ngFor="let c of characters()" (click)="select(c.id)">
+          <span class="dot"></span>
+          <div class="meta">
+            <b>{{ c.name }}</b>
+            <small>{{ c.occupation || "Sin ocupación" }}</small>
+          </div>
+          <span class="id">#{{ c.id }}</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="panel detail">
+      <h2>Detalle</h2>
+
+      <div class="state" *ngIf="loadingDetail()">Cargando personaje...</div>
+
+      <ng-container *ngIf="selected() as s; else empty">
+        <div class="card">
+          <img
+            *ngIf="portraitUrl(s.portrait_path)"
+            [src]="portraitUrl(s.portrait_path, '500')"
+            alt="portrait"
+          />
+
+          <div class="info">
+            <h3>{{ s.name }}</h3>
+            <p class="chips">
+              <span>{{ s.gender || "N/A" }}</span>
+              <span>Edad: {{ s.age ?? "N/A" }}</span>
+              <span>{{ s.status || "N/A" }}</span>
+            </p>
+            <p><b>Ocupación:</b> {{ s.occupation || "N/A" }}</p>
+
+            <div class="phrases" *ngIf="s.phrases.length">
+              <b>Frases:</b>
+              <ul>
+                <li *ngFor="let p of s.phrases.slice(0, 5)">{{ p }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-template #empty>
+        <div class="state">Selecciona un personaje de la lista 👈</div>
+      </ng-template>
+    </div>
+  </section>
+</div>

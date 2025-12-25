@@ -1,0 +1,10 @@
+<h3>Hijo</h3>
+
+<p><b>Mensaje recibido del padre:</b> {{ message || "(vacío)" }}</p>
+
+<input
+  type="text"
+  [(ngModel)]="childText"
+  placeholder="Escribe desde el hijo..."
+/>
+<button (click)="emitToParent()">Enviar al padre</button>
